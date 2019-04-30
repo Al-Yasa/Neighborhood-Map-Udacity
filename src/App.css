@@ -6,14 +6,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  background: pink;
 }
 
 /**** Start Header ****/
 header {
-  background: olivedrab;
   height: 50px;
+  background: olivedrab;
 }
 
 /**** Start Main ****/
@@ -25,14 +23,14 @@ main {
 /** Start Side Menu **/
 aside {
   background: darkolivegreen;
-  /* width: 200px; */
+  width: 200px;
   flex-grow: 1;
 }
 
 /** Start Map **/
 section {
-  background: darkmagenta;
   /* width: 100%; */
+  position: relative;
   flex-grow: 5;
 }
 
