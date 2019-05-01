@@ -3,14 +3,12 @@
 }
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 14px;
 }
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -24,9 +22,16 @@ ul {
   margin: 0;
   padding: 0;
 }
+p {
+  margin: 0;
+}
 a {
   text-decoration: none;
 }
-/* ::placeholder {
-  color: #b6b6b6;
-} */
+::placeholder {
+  color: #c1c1c1;
+  font-size: 1.1rem;
+}
+::-webkit-scrollbar {
+  display: none;
+}

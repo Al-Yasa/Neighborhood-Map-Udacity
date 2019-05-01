@@ -8,11 +8,18 @@ class VenuesList extends React.PureComponent {
 
     render() {
         return(
-            <ul>
-                {this.props.filteredVenues
-                    .map((venue) => (<Venue venue={venue} key={venue.id} onVenueClick={this.venueClick} />))
-                }
-            </ul>
+            <div className="venues">
+                {this.props.filteredVenues.length !== 0 ? (
+                    <p>{this.props.filteredVenues.length} results</p>
+                ) : (
+                    <h4>No results</h4>
+                )}
+                <ul className="venues-list">
+                    {this.props.filteredVenues
+                        .map((venue) => (<Venue venue={venue} key={venue.id} onVenueClick={this.venueClick} />))
+                    }
+                </ul>
+            </div>
         );
     }
 }

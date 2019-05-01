@@ -7,10 +7,10 @@ class FilterOptions extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="filter-options">
                 <h2>Filter Results</h2>
-                <div>
-                    <input type="text" minLength="2" maxLength="25" size="25" placeholder="Venue Name" onChange={this.filter} />
+                <div className="options">
+                    <input id="filter" type="text" maxLength="25" placeholder="Venue Name" onChange={this.filter} />
                 </div>
             </div>
         );

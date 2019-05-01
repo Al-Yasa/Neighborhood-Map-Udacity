@@ -75,9 +75,6 @@ class App extends Component {
             <MapContainer filteredVenues={this.state.filteredVenues} boundPoints={this.state.boundPoints}  />
           </section>
         </main>
-        <footer>
-          © 2019 <span>Al-Yasa' Ben Djillali</span> / Neighborhood Map Udacity FEND Project
-        </footer>
       </div>
     );
   }

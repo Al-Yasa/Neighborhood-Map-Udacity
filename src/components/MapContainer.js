@@ -20,7 +20,7 @@ class MapContainer extends React.Component {
     onMarkerClick = (props, marker) => {
         let selectedVenue = this.props.filteredVenues.filter((venue) => venue.name === props.title)
         let venuePhoto = '';
-        let size = '150';
+        let size = '200x150';
         Foursquare.getVenuePhoto(selectedVenue[0].id)
             .then((response) => {
                 venuePhoto = `${response[0].prefix}${size}${response[0].suffix}`;
@@ -42,6 +42,9 @@ class MapContainer extends React.Component {
     }
 
     onInfoWindowClose = () => {
+        console.log(this.props.google);
+
+
         if (this.state.showingInfoWindow) {
             this.setState({
                 selectedVenue: {},
@@ -67,6 +70,11 @@ class MapContainer extends React.Component {
                         name={venue.name}
                         position={{lat: venue.location.lat, lng: venue.location.lng}}
                         onClick={this.onMarkerClick}
+                        animation={this.state.activeMarker.name === venue.name && this.props.google.maps.Animation.BOUNCE}
+                        icon={{
+                            url : "marker-icon.png",
+                            scaledSize: new this.props.google.maps.Size(50,50)
+                        }}
                     />
                 )}
                 <InfoWindow
@@ -74,16 +82,20 @@ class MapContainer extends React.Component {
                     visible={this.state.showingInfoWindow}
                     onClose={this.onInfoWindowClose}
                 >
-                        <div>
+                        <div className="infoWindow-content">
                             <h3>{this.state.selectedVenue.name}</h3>
-                            <p>{this.state.selectedVenue.city}</p>
-                            <p>{this.state.selectedVenue.street}</p>
                             {this.state.selectedVenue.img ? (
                                 <img src={this.state.selectedVenue.img} alt={this.state.selectedVenue.name} />
                             ) : (
-                                <p>No image</p>
+                                <img src='no-image.png' alt="No image" />
                             )}
-                            <span>Data from SquareSpace.</span>
+                            <div className="infoWindow-text">
+                                <p><span>Country: </span>{this.state.selectedVenue.country}</p>
+                                <p><span>City: </span>{this.state.selectedVenue.city}</p>
+                                <p><span>State: </span>{this.state.selectedVenue.state}</p>
+                                <p><span>Street: </span>{this.state.selectedVenue.street}</p>
+                            </div>
+                            <span>Data from Foursquare.</span>
                         </div>
                 </InfoWindow>
             </Map>
