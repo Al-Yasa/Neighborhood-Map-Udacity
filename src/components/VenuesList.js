@@ -7,12 +7,13 @@ class VenuesList extends React.PureComponent {
     }
 
     render() {
+        let filteredVenues = this.props.filteredVenues;
         return(
             <div className="venues">
-                {this.props.filteredVenues.length !== 0 ? (
-                    <p>{this.props.filteredVenues.length} results</p>
+                {filteredVenues.length !== 0 ? (
+                    <p className="message">{filteredVenues.length} Result{filteredVenues.length == 1 ? '' : 's'}</p>
                 ) : (
-                    <h4>No results</h4>
+                    <p className="message">No Results</p>
                 )}
                 <ul className="venues-list">
                     {this.props.filteredVenues

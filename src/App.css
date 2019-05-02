@@ -178,6 +178,11 @@ aside .venues {
   padding: 10px;
 }
 
+aside .venues .message {
+  text-align: center;
+  color: #777;
+}
+
 aside .venues-list .venue {
   padding: 10px;
   margin: 8px 0;
@@ -239,6 +244,23 @@ section {
     position: relative;
     order: 2;
   }
+}
+
+/* Start Map Loader and Spinner */
+.loader,
+.google-loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  z-index: 999;
+  display: none;
 }
 
 /* Start InfoWindow */

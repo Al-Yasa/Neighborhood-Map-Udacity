@@ -1,6 +1,7 @@
 import React from 'react';
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import * as Foursquare from '../api/Foursquare';
+import Spinner from './Spinner'
 
 class MapContainer extends React.Component {
     state = {
@@ -20,7 +21,7 @@ class MapContainer extends React.Component {
     onMarkerClick = (props, marker) => {
         let selectedVenue = this.props.filteredVenues.filter((venue) => venue.name === props.title)
         let venuePhoto = '';
-        let size = '200x150';
+        let size = '150';
         Foursquare.getVenuePhoto(selectedVenue[0].id)
             .then((response) => {
                 venuePhoto = `${response[0].prefix}${size}${response[0].suffix}`;
@@ -42,9 +43,6 @@ class MapContainer extends React.Component {
     }
 
     onInfoWindowClose = () => {
-        console.log(this.props.google);
-
-
         if (this.state.showingInfoWindow) {
             this.setState({
                 selectedVenue: {},
@@ -104,5 +102,6 @@ class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBppTSlqCQ3KaiqDeYRgdTZqv0Cw_z24lk'
+    apiKey: 'AIzaSyBppTSlqCQ3KaiqDeYRgdTZqv0Cw_z24lk',
+    LoadingContainer: Spinner
 })(MapContainer);

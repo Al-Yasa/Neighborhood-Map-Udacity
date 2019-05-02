@@ -3,6 +3,7 @@ import './App.css';
 import * as Foursquare from './api/Foursquare';
 import SideMenu from './components/SideMenu';
 import MapContainer from './components/MapContainer';
+import Spinner from './components/Spinner';
 
 class App extends Component {
   state = {
@@ -15,7 +16,13 @@ class App extends Component {
     ]
   }
 
+  toggleLoader = (num) => {
+    const LOADER = document.querySelector('section > .loader');
+    LOADER.style.display = num === 1 ? 'flex' : 'none';
+  }
+
   search = (searchQuery) => {
+    this.toggleLoader(1);
     Foursquare.getVenues(searchQuery.area, searchQuery.venue, searchQuery.limit)
       .then(foursquareVenues => {
         let venues = [];
@@ -41,9 +48,11 @@ class App extends Component {
         });
         this.setState({venues: venues, boundPoints: boundPoints});
         this.filter(this.state.filterQuery);
+        this.toggleLoader(0);
       })
       .catch((error) => {
         // console.log(error);
+        this.toggleLoader(0);
       });
   }
 
@@ -72,6 +81,7 @@ class App extends Component {
             <SideMenu onSearch={this.search} onFilter={this.filter} filteredVenues={this.state.filteredVenues} />
           </aside>
           <section>
+            <Spinner spinner={true} />
             <MapContainer filteredVenues={this.state.filteredVenues} boundPoints={this.state.boundPoints}  />
           </section>
         </main>
