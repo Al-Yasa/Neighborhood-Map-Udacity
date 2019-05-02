@@ -1,16 +1,18 @@
 @charset "utf-8";
 
 /**** Start App ****/
-.app {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+@media all and (min-width: 800px) {
+  .app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 /**** Start Header ****/
 header {
-  height: 10%;
+  height: 50px;
   background-color: #fff;
   display: flex;
   justify-content: center;
@@ -18,41 +20,65 @@ header {
 }
 
 header h1 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: #464b5f;
+}
+
+@media all and (min-width: 800px) {
+  header {
+    height: 10%;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+  }
 }
 
 /**** Start Main ****/
 main {
-  height: 90%;
   display: flex;
+  flex-direction: column;
+}
+
+@media all and (min-width: 800px) {
+  main {
+    height: 90%;
+    flex-direction: row;
+  }
 }
 
 /** Start Side Menu **/
 aside {
   background-color: #f1f1f1;
-  width: 375px;
-  padding: 10px 15px;
-  overflow: hidden;
-  overflow-y: scroll;
+  order: 2;
 }
 
 aside > div {
   background: #fff;
-  margin: 0 0 20px;
+  /* margin: 0 0 10px; */
+}
+
+@media all and (min-width: 800px) {
+  aside {
+    width: 375px;
+    padding: 10px 15px;
+    overflow: hidden;
+    overflow-y: scroll;
+    order: 1;
+  }
+
+  aside > div {
+    margin: 0 0 20px;
+  }
 }
 
 /* Start Search Options */
-aside .search-options {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.01);
-}
-
 aside .search-options h2 {
   color: #fff;
   text-align: center;
   letter-spacing: 2px;
   padding: 10px 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   background-color: #464b5f;
 }
 
@@ -77,12 +103,12 @@ aside .search-options .options select {
   border: 1px solid #e6e6e6;
   color: #777;
   padding: 5px 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 aside .search-options button {
   background-color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   border: 1px solid #e6e6e6;
   color: #929294;
   width: 100%;
@@ -91,11 +117,26 @@ aside .search-options button {
   cursor: pointer;
 }
 
-/* Start Filter Options */
-aside .filter-options {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.01);
+@media all and (min-width: 800px) {
+  aside .search-options {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.01);
+  }
+
+  aside .search-options h2 {
+    font-size: 1.3rem;
+  }
+
+  aside .search-options .options input,
+  aside .search-options .options select {
+    font-size: 1.2rem;
+  }
+
+  aside .search-options button {
+    font-size: 1.2rem;
+  }
 }
 
+/* Start Filter Options */
 aside .filter-options .options {
   padding: 5px 10px;
 }
@@ -105,7 +146,7 @@ aside .filter-options h2 {
   text-align: center;
   letter-spacing: 2px;
   padding: 10px 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   background-color: #464b5f;
 }
 
@@ -115,12 +156,25 @@ aside .filter-options .options input {
   border: 1px solid #e6e6e6;
   color: #777;
   padding: 5px 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+}
+
+@media all and (min-width: 800px) {
+  aside .filter-options {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.01);
+  }
+
+  aside .filter-options h2 {
+    font-size: 1.3rem;
+  }
+
+  aside .filter-options .options input {
+    font-size: 1.2rem;
+  }
 }
 
 /* Start Venues List */
 aside .venues {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.01);
   padding: 10px;
 }
 
@@ -157,10 +211,34 @@ aside .venues-list .venue:hover h4 {
   color: #fff;
 }
 
+@media all and (min-width: 800px) {
+  aside .venues {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.01);
+  }
+}
+
 /** Start Map **/
 section {
   width: 100%;
+  height: 350px;
+  overflow: hidden;
   position: relative;
+  order: 1;
+}
+
+@media all and (min-width: 600px) {
+  section {
+    height: 550px;
+  }
+}
+
+@media all and (min-width: 800px) {
+  section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    order: 2;
+  }
 }
 
 /* Start InfoWindow */
@@ -172,28 +250,28 @@ section {
 
 .infoWindow-content h3 {
   color: #464b5f;
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin: 0 0 5px;
 }
 
 .infoWindow-content img {
-    padding: 5px 5px 15px;
     border: 1px solid #d9dee9;
     border-radius: 0.3em;
+    display: none;
 }
 
 .infoWindow-content .infoWindow-text {
-  margin: 0 0 15px;
+  margin: 0 0 10px;
 }
 
 .infoWindow-content .infoWindow-text p {
   margin-bottom: 5px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
 
 .infoWindow-content .infoWindow-text p span {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .infoWindow-content > span {
@@ -201,4 +279,27 @@ section {
   border-top: 1px solid #ccc;
   padding-top: 5px;
   letter-spacing: 0.05rem;
+}
+
+@media all and (min-width: 800px) {
+  .infoWindow-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .infoWindow-content img {
+    display: block;
+    width: 150px;
+}
+
+  .infoWindow-content .infoWindow-text {
+    margin: 0 0 15px;
+  }
+
+  .infoWindow-content .infoWindow-text p {
+    font-size: 1.2rem;
+  }
+
+  .infoWindow-content .infoWindow-text p span {
+    font-size: 1.1rem;
+  }
 }

@@ -9,7 +9,6 @@ class Venue extends React.Component {
         return(
             <li className="venue" onClick={this.onClick}>
                 <h4>{this.props.venue.name}</h4>
-                {/* <p>{this.props.venue.street}</p> */}
             </li>
         );
     }

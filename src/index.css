@@ -5,6 +5,16 @@ html {
   box-sizing: border-box;
   font-size: 14px;
 }
+@media all and (min-width: 600px) {
+  html {
+    font-size: 20px;
+  }
+}
+@media all and (min-width: 800px) {
+  html {
+    font-size: 13px;
+  }
+}
 body {
   margin: 0;
   padding: 0;
