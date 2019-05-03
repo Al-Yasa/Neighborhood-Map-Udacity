@@ -8,7 +8,7 @@ export const getVenues = (area, venue, limit) => {
     .then(result => result.response.venues);
 }
 
-export const getVenuePhoto = (venueId) => {
+export const getVenuePhoto = venueId => {
   return fetch(`https://api.foursquare.com/v2/venues/${venueId}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`)
     .then(response => response.json())
     .then(result => result.response.photos.items);

@@ -188,10 +188,7 @@ aside .venues .message {
 }
 
 aside .venues-list .venue {
-  padding: 10px;
   margin: 8px 0;
-  border: 1px solid #e6e6e6;
-  cursor: pointer;
   animation: fadeInUp 1.4s;
 }
 
@@ -207,17 +204,21 @@ aside .venues-list .venue {
     }
 }
 
-aside .venues-list .venue:hover {
-  background-color: #464b5f;
-}
-
-aside .venues-list .venue h4 {
+aside .venues-list .venue button {
+  cursor: pointer;
   color: #444;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  width: 100%;
   font-size: 1rem;
+  font-weight: bold;
+  background-color: transparent;
+  text-align: left;
 }
 
-aside .venues-list .venue:hover h4 {
+aside .venues-list button:hover {
   color: #fff;
+  background-color: #464b5f;
 }
 
 @media all and (min-width: 800px) {

@@ -1,9 +1,18 @@
 import React from 'react';
 import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import * as Foursquare from '../api/Foursquare';
-import Spinner from './Spinner'
+import Spinner from './Spinner';
+import PropTypes from 'prop-types';
 
 class MapContainer extends React.Component {
+    static propTypes = {
+        filteredVenues: PropTypes.arrayOf(PropTypes.object).isRequired,
+        boundPoints: PropTypes.arrayOf(PropTypes.shape({
+            lat: PropTypes.number.isRequired,
+            lng: PropTypes.number.isRequired
+        })).isRequired,
+    }
+
     state = {
         selectedVenue: {},
         activeMarker: {},
@@ -12,18 +21,18 @@ class MapContainer extends React.Component {
 
     centerMap = () => {
         let bounds = new this.props.google.maps.LatLngBounds();
-        this.props.boundPoints.forEach((boundPoint) => {
+        this.props.boundPoints.forEach(boundPoint => {
             bounds.extend(boundPoint);
         });
         return bounds;
     }
 
     onMarkerClick = (props, marker) => {
-        let selectedVenue = this.props.filteredVenues.filter((venue) => venue.name === props.title)
+        let selectedVenue = this.props.filteredVenues.filter(venue => venue.name === props.title)
         let venuePhoto = '';
         let size = '150';
         Foursquare.getVenuePhoto(selectedVenue[0].id)
-            .then((response) => {
+            .then(response => { // look for an image for the selected venue
                 venuePhoto = `${response[0].prefix}${size}${response[0].suffix}`;
                 selectedVenue[0].img = venuePhoto;
                 this.setState({
@@ -32,7 +41,7 @@ class MapContainer extends React.Component {
                     showingInfoWindow: true
                 });
             })
-            .catch((error) => {
+            .catch(() => { // if no image is found then leave it empty
                 selectedVenue[0].img = '';
                 this.setState({
                     selectedVenue: selectedVenue[0],
@@ -55,13 +64,15 @@ class MapContainer extends React.Component {
     render() {
         return(
             <Map
+                role="application"
+                aria-label="map"
                 google={this.props.google}
                 initialCenter={{lat: 25.39, lng: -2.52}}
                 zoom={2}
                 bounds={this.centerMap()}
                 onClick={this.onInfoWindowClose}
             >
-                {this.props.filteredVenues.map((venue, index) =>
+                {this.props.filteredVenues.map(venue =>
                     <Marker
                         key={venue.id}
                         title={venue.name}
@@ -83,9 +94,9 @@ class MapContainer extends React.Component {
                         <div className="infoWindow-content">
                             <h3>{this.state.selectedVenue.name}</h3>
                             {this.state.selectedVenue.img ? (
-                                <img src={this.state.selectedVenue.img} alt={this.state.selectedVenue.name} />
-                            ) : (
-                                <img src='no-image.png' alt="No image" />
+                                <img src={this.state.selectedVenue.img} alt={'Image of ' + this.state.selectedVenue.name} />
+                            ) : ( // if venue has no image then give it a 'missing image' image
+                                <img src='no-image.png' alt="No images Found" />
                             )}
                             <div className="infoWindow-text">
                                 <p><span>Country: </span>{this.state.selectedVenue.country}</p>

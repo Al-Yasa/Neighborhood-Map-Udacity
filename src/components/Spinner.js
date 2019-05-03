@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Spinner = (props) => (
+const Spinner = props => (
     props.spinner ? (
         <div className="loader">
             <img src="spinner.svg" alt="Spinner" />
@@ -11,5 +12,9 @@ const Spinner = (props) => (
         </div>
     )
 );
+
+Spinner.propTypes= {
+    spinner: PropTypes.bool
+}
 
 export default Spinner;

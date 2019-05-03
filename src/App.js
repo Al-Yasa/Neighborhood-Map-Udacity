@@ -16,12 +16,12 @@ class App extends Component {
     ]
   }
 
-  toggleLoader = (num) => {
+  toggleLoader = num => {
     const LOADER = document.querySelector('section > .loader');
     LOADER.style.display = num === 1 ? 'flex' : 'none';
   }
 
-  search = (searchQuery) => {
+  search = searchQuery => {
     this.toggleLoader(1);
     Foursquare.getVenues(searchQuery.area, searchQuery.venue, searchQuery.limit)
       .then(foursquareVenues => {
@@ -51,7 +51,7 @@ class App extends Component {
               lng: foursquareVenue.location.lng
             });
           });
-          this.setState({venues: venues, boundPoints: boundPoints});
+          this.setState({venues, boundPoints});
           this.filter(this.state.filterQuery);
           this.toggleLoader(0);
         }
@@ -62,14 +62,14 @@ class App extends Component {
       });
   }
 
-  filter = (filterQuery) => {
+  filter = filterQuery => {
     if (filterQuery) {
-      this.setState((state, props) => ({
+      this.setState(state => ({
         filterQuery: filterQuery,
         filteredVenues: state.venues.filter(venue => venue.name.toLowerCase().includes(filterQuery))
       }));
     } else {
-      this.setState((state, props) => ({
+      this.setState(state => ({
         filterQuery: '',
         filteredVenues: state.venues
       }));
@@ -80,7 +80,7 @@ class App extends Component {
     return (
       <div className="app">
         <header>
-          <h1>Neighborhood Map</h1>
+          <h1 tabIndex="1" aria-label="Neighborhood Map">Neighborhood Map</h1>
         </header>
         <main>
           <aside>
@@ -88,7 +88,7 @@ class App extends Component {
           </aside>
           <section>
             <Spinner spinner={true} />
-            <MapContainer filteredVenues={this.state.filteredVenues} boundPoints={this.state.boundPoints}  />
+            <MapContainer filteredVenues={this.state.filteredVenues} boundPoints={this.state.boundPoints} />
           </section>
         </main>
       </div>

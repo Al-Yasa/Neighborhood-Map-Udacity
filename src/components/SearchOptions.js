@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchOptions extends React.Component {
     constructor(props) {
@@ -6,6 +7,10 @@ class SearchOptions extends React.Component {
         // create a refs to store textInput DOM elements
         this.areaInput = React.createRef();
         this.venueInput = React.createRef();
+    }
+
+    static propTypes = {
+        onSearch: PropTypes.func.isRequired
     }
 
     state = {
@@ -44,22 +49,22 @@ class SearchOptions extends React.Component {
 
     render() {
         return(
-            <div className="search-options">
+            <div className="search-options" tabIndex="2" aria-label="Search Options">
                 <h2>Search Results</h2>
                 <div className="options">
                     <label htmlFor="area" >Area</label>
-                    <input ref={this.areaInput} id="area" type="text" name="area" maxLength="25" placeholder="Dubai, New York, Frankfurt" onChange={this.handleChange} defaultValue="Dubai" />
+                    <input ref={this.areaInput} id="area" type="text" tabIndex="3" aria-label="Search Country, City or Area" name="area" maxLength="25" placeholder="Dubai, New York, Frankfurt" onChange={this.handleChange} defaultValue="Dubai" />
                     <label htmlFor="venue" >Venue</label>
-                    <input ref={this.venueInput} id="venue" type="text" name="venue" maxLength="25" placeholder="School, Restaurant, Coffee" onChange={this.handleChange}  defaultValue="School" />
+                    <input ref={this.venueInput} id="venue" type="text"tabIndex="4" aria-label="Search Venue Name" name="venue" maxLength="25" placeholder="School, Restaurant, Coffee" onChange={this.handleChange}  defaultValue="School" />
                     <label htmlFor="limit" >Limit</label>
-                    <select name="limit" defaultValue="5" onChange={this.handleChange}>
+                    <select id="limit" tabIndex="5" role="tablist" aria-label="Limit Search" name="limit" defaultValue="5" onChange={this.handleChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
                     </select>
                 </div>
-                <button onClick={this.search}>Search</button>
+                <button tabIndex="6" aria-label="Search" onClick={this.search}>Search</button>
             </div>
         );
     }
