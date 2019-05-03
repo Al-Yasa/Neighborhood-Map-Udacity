@@ -50,7 +50,7 @@ class SearchOptions extends React.Component {
     render() {
         return(
             <div className="search-options" tabIndex="2" aria-label="Search Options">
-                <h2>Search Results</h2>
+                <h2>Search Options</h2>
                 <div className="options">
                     <label htmlFor="area" >Area</label>
                     <input ref={this.areaInput} id="area" type="text" tabIndex="3" aria-label="Search Country, City or Area" name="area" maxLength="25" placeholder="Dubai, New York, Frankfurt" onChange={this.handleChange} defaultValue="Dubai" />
