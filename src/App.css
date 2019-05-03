@@ -330,3 +330,57 @@ section {
     font-size: 1.1rem;
   }
 }
+
+/**** Start Google Error ****/
+.google-error {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.google-error p:first-of-type {
+  font-size: 3rem;
+  color: #666;
+}
+
+.google-error h2 {
+  font-size: 1.4rem;;
+  color: #464b5f;
+  margin: 5px 0 15px;
+}
+
+.google-error p:last-of-type {
+  font-size: 0.95rem;
+  color: #464b5f;
+}
+
+@media all and (min-width: 600px) {
+  .google-error p:first-of-type {
+    font-size: 4rem;
+  }
+
+  .google-error h2 {
+    font-size: 2rem;
+  }
+
+  .google-error p:last-of-type {
+    font-size: 1.2rem;
+  }
+}
+
+@media all and (min-width: 800px) {
+  .google-error p:first-of-type {
+    font-size: 5rem;
+  }
+
+  .google-error h2 {
+    font-size: 3rem;
+  }
+
+  .google-error p:last-of-type {
+    font-size: 1.7rem;
+  }
+}

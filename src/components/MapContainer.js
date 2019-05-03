@@ -13,6 +13,12 @@ class MapContainer extends React.Component {
         })).isRequired,
     }
 
+    componentDidMount() {
+        // if you want to see the error screen that appears if google fails to load the map uncomment the line below
+        // window.gm_authFailure();
+        // the line of code above has nothing to do with the app, it is just to show the error screen
+    }
+
     state = {
         selectedVenue: {},
         activeMarker: {},
