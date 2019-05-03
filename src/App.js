@@ -25,33 +25,39 @@ class App extends Component {
     this.toggleLoader(1);
     Foursquare.getVenues(searchQuery.area, searchQuery.venue, searchQuery.limit)
       .then(foursquareVenues => {
-        let venues = [];
-        let boundPoints = [];
-        foursquareVenues.forEach(foursquareVenue => {
-          venues.push({
-            id: foursquareVenue.id,
-            name: foursquareVenue.name,
-            country: foursquareVenue.location.country,
-            city: foursquareVenue.location.city,
-            state: foursquareVenue.location.state,
-            street: foursquareVenue.location.crossStreet,
-            location: {
+        if (!foursquareVenues.length) { // receiving and empty array should also be considered an error
+          alert('No Results');
+          this.toggleLoader(0);
+          return;
+        } else {
+          let venues = [];
+          let boundPoints = [];
+          foursquareVenues.forEach(foursquareVenue => {
+            venues.push({
+              id: foursquareVenue.id,
+              name: foursquareVenue.name,
+              country: foursquareVenue.location.country,
+              city: foursquareVenue.location.city,
+              state: foursquareVenue.location.state,
+              street: foursquareVenue.location.address,
+              location: {
+                lat: foursquareVenue.location.lat,
+                lng: foursquareVenue.location.lng
+              },
+              img: ''
+            });
+            boundPoints.push({
               lat: foursquareVenue.location.lat,
               lng: foursquareVenue.location.lng
-            },
-            img: ''
+            });
           });
-          boundPoints.push({
-            lat: foursquareVenue.location.lat,
-            lng: foursquareVenue.location.lng
-          });
-        });
-        this.setState({venues: venues, boundPoints: boundPoints});
-        this.filter(this.state.filterQuery);
-        this.toggleLoader(0);
+          this.setState({venues: venues, boundPoints: boundPoints});
+          this.filter(this.state.filterQuery);
+          this.toggleLoader(0);
+        }
       })
-      .catch((error) => {
-        // console.log(error);
+      .catch(() => {
+        alert('No Results');
         this.toggleLoader(0);
       });
   }
