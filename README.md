@@ -2,6 +2,8 @@
 
 This is a project for the Udacity Front-End Nanodegree called **Neighborhood Map**.
 
+Check out this project on [GitHub Pages](https://al-yasa.github.io/Neighborhood-Map-Udacity/ "Neighborhood Map - Belhenniche Al-Yasa'").
+
 ## Description
 
 ![Neighborhood Map](public/favicon.png "MyReads")
@@ -31,6 +33,8 @@ The project emphasizes using React to build the application and using APIs (Goog
     - [create-react-app](https://github.com/facebookincubator/create-react-app) (React project scaffolding manager)
 
     - [git](https://git-scm.com/downloads) (Version control system)
+
+        - gh-pages
 
     - [npm](https://nodejs.org/en/download/) (Javascript package manager)
 
@@ -102,7 +106,9 @@ getVenuePhoto(venueId)
 
 ## Usage
 
-You can run the app locally.
+You can run the app locally or online.
+
+If you want to run online you have to visit this project on [GitHub Pages](https://al-yasa.github.io/Neighborhood-Map-Udacity/ "Neighborhood Map - Belhenniche Al-Yasa'").
 
 If you want to run locally you have to download the app first:
 
